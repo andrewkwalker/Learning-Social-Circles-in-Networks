@@ -1,0 +1,49 @@
+Data Files:
+egonets
+features
+Training
+sampe_submission
+testSet_users_friends
+connected_components
+socialCircles_metric
+featureList
+
+We use the following nomenclature:
+
+	User: Target individual whose network is the focus of the task
+	Friend: Friend of the target individual (user) that needs to be placed into a circle
+
+We include the following files:
+
+	egonets: Each file in this directory contains the ego-network of a single Facebook user, i.e., a list of connections between their friends. Each file userId.egonet contains lines of the form:
+		UserId: Friends
+		1: 4 6 12 2 208
+		2: 5 3 17 90 7
+	These are node-adjacency lists indicating that User 1 is friends with Friend 4, Friend 6, etc. Edges are undirected in Facebook. It can be assumed that user (the owner of the gonet) is friends with all ids in this file.
+
+	features: Contains features for all users. Each line is of the form:
+		UserId feature1 feature2 feature3 ...
+	Each line starts with the id of a user. There is one line for every user and all of their friends. The remainder of the line is the set of features for which the user have positive values. e.g. a line of the form:
+		0 first_name;Julian
+		hometown;name;Palo_Alto work;employer;name;Stanford
+	Would mean that user "0" has name "Julian", lives in "Palo Alto", and works at "Stanford". Of course, these features have been anonymized such that these values have been obscured. Each possible value has been hased to a number, so that the above might become:
+		0 first_name;435 hometown;name;567 work;employer;name;23
+
+	Training: Each user.circles file in this directory contains human-labeled circles provided by a user. Each line is of the form:
+		circleID: friend1 friend2 friend3 ...
+	which lists the friends belonging to the circle. This file can be used to reproduce the labels for the training data.
+
+	testset_users_friends: A list of the users in the test set, and the friends of each user. This information is available from each user's egonet file, however, we have collected it here for your convenience.
+		UserId: Friends
+		1: 12 33 4 5 7 8
+		2: 3 6 10 15 16 20
+
+	sample_submission: A sample submission file in the correct format. This submission corresponds to the "All Friends in One Circle" benchmark.
+
+	connected_components, connected_components_benchmark: Python code and a submission file for the Connected Components model.
+
+	socialCircles_metric: Python script to calculate the evaluation metric.
+
+	featureList: List of all possible features.
+
+This information and the files are available at: https://www.kaggle.com/c/learning-social-circles/data
